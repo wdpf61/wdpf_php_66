@@ -1,5 +1,11 @@
 <?php 
-  // echo "Hello world <br>" , "Hello World2";
+
+//  $name="Rashed";
+//  $last= "Khan";
+
+//  echo "$name $last <br>";
+
+//  echo "Hello world  {$name} <br>" , "Hello World2";
 
   // $break= "<br>";
   // echo $break;
@@ -22,7 +28,7 @@
   // /*echo $abc;
   //  echo $abc; */
 
-
+  //  echo "<br>";
 
   //  $fname= "Khaled";
   //  $lName= "Mahmud";
@@ -32,20 +38,21 @@
   //  echo "My Name is {$uf} {$lName}";
   //    echo "<br>";
    
-  //   printf("My Name is %s %s %o" , strtoupper($fname) , strtolower($lName), 100 );
-  //   $sprint=  sprintf("My Name is %s %s" , strtoupper($fname) , strtolower($lName) );
+    // printf("My Name is %s %s %b" , strtoupper($fname) , strtolower($lName), 100 );
+    // $sprint=  sprintf("My Name is %s %s" , strtoupper($fname) , strtolower($lName) );
 
-  //   echo  $sprint;
+    //  echo  $sprint;
      
+    //  die();
 
 //   data type 
-//  $name= "Khabib";  // string
-//  $cost = 1200;     // int
-//  $cost2= 50.33;     // float , double , fraction, real
-//  $isActive = true;
-//   echo "<br>";
-//  $studentList= ["Jamal", "kamal", "Hasib", "Asif"];
-//  $student=   ["Name"=>"Jamal", "Age"=>29, "Address"=> "Dhaka"];  //associative array
+ $name= "Khabib";  // string
+ $cost = 1200;     // int
+ $cost2= 50.33;     // float , double , fraction, real
+ $isActive = true;
+  echo "<br>";
+ $studentList= ["Jamal", "kamal", "Hasib", "Asif"];
+ $student=   ["Name"=>"Jamal", "Age"=>29, "Address"=> "Dhaka"];  //associative array
 
 //  print_r($studentList);
 //   echo "<br>";
@@ -108,3 +115,9 @@ echo $number;
 
 ?>
 
+
+
+<script>
+
+  let abc = 100;
+</script>
