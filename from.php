@@ -1,9 +1,24 @@
 <?php
- $name = "Hasan Hamid";
- print_r($_GET);
+ $name = null;
+ $errors=[];
+//  print_r($_GET);
  if(isset($_GET['btn_Name'])){
     $name = $_GET['name'];
+    
+    if(empty( $name)){
+      $errors['name']= "Name field is Required";
+    }elseif(!preg_match("/^[a-zA-Z .]{2,}$/", $name)){
+         $errors['name']= "Valid Name is Required";
+    }
+   
  }
+
+
+
+  $errors["email"]= "Not a Valid Eamail";
+  $errors[0]= "index";
+
+  print_r($errors);
  
 ?>
 <!DOCTYPE html>
@@ -18,7 +33,7 @@
      <form action="from.php" method="GET">
        <label for="n">Give Your Name</label> <br>
        <input type="text" name="name" id="n"> <br> <br>
-
+        <?php if(!empty($errors["name"])) echo "<p>{$errors['name']}</p>"; ?>
        <input type="submit" name="btn_Name" >
 
      </form>
