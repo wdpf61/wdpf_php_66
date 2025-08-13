@@ -13,8 +13,6 @@
    
  }
 
-
-
   $errors["email"]= "Not a Valid Eamail";
   $errors[0]= "index";
 
