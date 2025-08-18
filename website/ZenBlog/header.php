@@ -9,10 +9,10 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.php?page=home" class="active">Home</a></li>
-          <li><a href="index.php?page=about">About</a></li>
+          <li><a href="home" class="active">Home</a></li>
+          <li><a href="about">About</a></li>
           <li><a href="single-post.html">Single Post</a></li>
-          <li class="dropdown"><a href="index.php?page=category"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="category"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="category.html">Category 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -29,7 +29,7 @@
               <li><a href="category.html">Category 4</a></li>
             </ul>
           </li>
-          <li><a href="index.php?page=contact">Contact</a></li>
+          <li><a href="contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

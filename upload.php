@@ -12,9 +12,9 @@ if (isset($_POST['upload'])) {
 
     // Move file to folder
     if (move_uploaded_file($fileTmp, $folder . $fileName)) {
-        echo "✅ File uploaded successfully: " . $fileName;
+        echo " File uploaded successfully: " . $fileName;
     } else {
-        echo "❌ Failed to upload file.";
+        echo "Failed to upload file.";
     }
 }
 ?>
