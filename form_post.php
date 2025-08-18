@@ -2,6 +2,7 @@
  if(isset($_POST['btn_Name'])){
     $name = $_REQUEST['name'];
      echo $name;
+  //  print_r($_GET);
   //  print_r($_POST);
   //  print_r($_REQUEST);
  }
