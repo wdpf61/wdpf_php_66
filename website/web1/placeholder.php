@@ -14,8 +14,6 @@
     }elseif($page == "book"){
       include("page/book.php");
     }
-        
-   
  }else{
      include("page/home.php");
  }
