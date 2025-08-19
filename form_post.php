@@ -19,9 +19,7 @@
      <form action="" method="POST">
        <label for="n">Give Your Name</label> <br>
        <input type="text" name="name" id="n"> <br> <br>
-       
        <input type="submit" name="btn_Name" >
-
      </form>
    
 </body>
