@@ -98,11 +98,7 @@ if(isset($_POST['btn_update'])){
      
         <?php 
           if( is_null($search_student) ) {
-
-         
-        
         ?>
-
        <div>
          <h1> New Student</h1>
             <form action="" method="POST">
@@ -116,13 +112,8 @@ if(isset($_POST['btn_update'])){
             </form>
        </div>
         <?php 
-        
          }else{
-
-       
-        
         ?>
-
        <div>
          <h1> Update Student</h1>
             <form action="" method="POST">
@@ -135,8 +126,6 @@ if(isset($_POST['btn_update'])){
             <input type="submit" name="btn_update"  value="Update" >
             </form>
        </div>
-  
-        
     <?php }?>
 
        

@@ -52,9 +52,7 @@ public static function delete($_id){
      return true;
   }
 
-
  public function update(){
-
      $data= file("studentdata.txt");
      $student="";
      foreach ($data as $key => $value) {
@@ -68,7 +66,6 @@ public static function delete($_id){
      file_put_contents("studentdata.txt",$student);
      return true;
   }
-
 
  public static function search($_id){
      $data= file("studentdata.txt");
