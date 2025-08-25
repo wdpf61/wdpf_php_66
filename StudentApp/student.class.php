@@ -58,7 +58,7 @@ public static function delete($_id){
      foreach ($data as $key => $value) {
         list($id)= explode(",", $value);
         if($this->id == $id){
-            $student .= $this->id.",".$this->name.",".$this->address;
+            $student .= $this->id.",".$this->name.",".$this->address.PHP_EOL;
         }else{
             $student .= $value;
         }

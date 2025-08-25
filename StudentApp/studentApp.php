@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+if(!$_SESSION["name"] ){
+   header("location:login.php");
+}
  include_once ("student.class.php");
 //  require "student.class.php";
 //  require_once
@@ -30,13 +35,7 @@
   }
 // Edit/serarch function
 
-   $search_student=null;
-  if(isset($_GET['EditId'])){
-    $id= $_GET['EditId'];
-    $search_student =  Student::search($id);
 
-    // print_r( $search_student);
-  }
 
 //  update function 
 
@@ -57,9 +56,25 @@ if(isset($_POST['btn_update'])){
 
  }
 
+    $search_student=null;
+  if(isset($_GET['EditId'])){
+    $id= $_GET['EditId'];
+    $search_student =  Student::search($id);
+
+    // print_r( $search_student);
+  }
 
 
+// delete function
 
+  if(isset($_GET['logout'])){
+    $logout= $_GET['logout'];
+    if($logout){
+     session_unset();
+     session_destroy();
+    header("location:login.php");
+    }
+  }
 
 ?>
 
@@ -88,6 +103,9 @@ if(isset($_POST['btn_update'])){
      </style>
 </head>
 <body>
+       <h1>Welcome <?php echo $_SESSION["name"] ??  "User" ; ?></h1>
+
+        <a href="studentApp.php?logout=1">Logout</a>
        <div>
             <h1>Student Table </h1>
              <a href="index.php">New Student</a>
