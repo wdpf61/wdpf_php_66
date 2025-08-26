@@ -115,7 +115,7 @@ if(isset($_POST['btn_update'])){
        </div>
      
         <?php 
-          if( is_null($search_student) ) {
+          if(is_null($search_student)) {
         ?>
        <div>
          <h1> New Student</h1>

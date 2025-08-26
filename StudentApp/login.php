@@ -45,14 +45,13 @@ if(isset($_POST["btn_login"])){
     </style>
 </head>
 <body>
-    
        <div>
          <h1>Login Form</h1>
             <form action="login.php" method="POST">
             <label for="n">Username</label> <br>
             <input type="text" name="name" id="name"> <br> <br>
             <label for="n">Password</label> <br>
-            <input type="password" name="password" id="password"> <br> <br>
+            <input type="password" name="password" id="password"><br><br>
             <input type="submit" name="btn_login" value="login">
             </form>
        </div>
