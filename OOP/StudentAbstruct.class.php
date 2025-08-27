@@ -1,6 +1,9 @@
 <?php 
+include "trait.php";
 
-class Person{
+
+
+abstract class Person{
   public $name;
   public $address;
   public $phone; 
@@ -16,10 +19,13 @@ class Person{
       echo "$this->name | $this->address| $this->phone";
   }
 
+  abstract function showPhoneNumber();
+  
 }
 
 
 class Student extends Person{
+    use Log;
     public $className;
     public $roll;
 
@@ -34,6 +40,11 @@ class Student extends Person{
      function ShowInfo(){
       echo "$this->name | $this->address| $this->phone | $this->className | $this->roll";
     }
+
+     function showPhoneNumber(){
+       echo "The Student $this->name has $this->phone Number";
+       $this->log($this->phone);
+     }
 
 
 }
@@ -54,19 +65,23 @@ class Teacher extends Person{
       echo "$this->name | $this->address| $this->phone | $this->subject | $this->age";
     }
 
+      function showPhoneNumber(){
+       echo "The Teacher $this->name has $this->phone Number";
+     }
+
 
 }
 
  $student1= new Student("Hasnat", "Dhaka", "01985478899","Five", 6);
- $student1->ShowInfo();
+//  $student1->ShowInfo();
+ $student1->showPhoneNumber();
 
 //  $person= new Person("Masud", "Dhaka", "01985478899");
 
 //  $person->ShowInfo();
 
-
-
-
+$teacher1= new Teacher("Mahbub Hasan", "Dhaka", "0198","Math",25);
+$teacher1->showPhoneNumber();
 
 
 
