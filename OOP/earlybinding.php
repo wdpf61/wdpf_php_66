@@ -3,9 +3,8 @@
 
 class A {
     public static function who() {
-        echo "I am A\n";
+        echo "I am A";
     }
-
     // Early Binding (self::)
     public static function testEarly() {
         self::who(); // fixed at compile time
@@ -17,15 +16,28 @@ class A {
     }
 }
 
+
+
+// echo A::add();
+
+$a = new A();
+// echo $a->sub();
+
+
+
+
+
 class B extends A {
     public static function who() {
-        echo "I am B\n";
+        echo "I am B";
     }
 }
 
-// ---------- Testing ----------
-echo "=== Early Binding ===\n";
-B::testEarly(); // Output: I am A
 
-echo "\n=== Late Binding ===\n";
-B::testLate();  // Output: I am B
+
+// ---------- Testing ----------
+// echo "=== Early Binding ===";
+// B::testEarly(); // Output: I am A
+
+// echo "=== Late Binding ===";
+// B::testLate();  // Output: I am B

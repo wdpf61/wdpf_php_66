@@ -33,10 +33,24 @@ class Student extends Person{
 
      function ShowInfo(){
       echo "$this->name | $this->address| $this->phone | $this->className | $this->roll";
+     
+    }
+
+    function parentShowinfo(){
+       parent::ShowInfo();
+
+       $this->ShowInfo();
     }
 
 
 }
+
+
+ $student1= new Student("Hasnat", "Dhaka", "01985478899","Five", 6);
+ $student1->parentShowinfo();
+
+
+
 
 class Teacher extends Person{
     public $subject;
@@ -57,8 +71,6 @@ class Teacher extends Person{
 
 }
 
- $student1= new Student("Hasnat", "Dhaka", "01985478899","Five", 6);
- $student1->ShowInfo();
 
 //  $person= new Person("Masud", "Dhaka", "01985478899");
 

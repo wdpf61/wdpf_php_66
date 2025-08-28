@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Close on Boundary Hover</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f0f0f0;
+    }
+    .rectangle {
+        width: 800px;
+        height: 500px;
+        background-color: #3498db;
+        position: relative;
+    }
+    /* Boundary effect */
+    .rectangle::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border: 10px solid transparent; /* Invisible edge */
+    }
+</style>
+</head>
+<body>
+
+<div class="rectangle" id="rectangle"></div>
+
+
+
+
+<script>
+    const rect = document.getElementById('rectangle');
+    rect.addEventListener('mousemove', (e) => {
+
+       
+        
+        const bounds = rect.getBoundingClientRect();
+        const x = e.clientX - bounds.left;
+        const y = e.clientY - bounds.top;
+        const edgeSize = 10; // Edge thickness to trigger close
+        // console.log(edgeSize);
+         console.log(e.clientX);
+         console.log(x);
+        // console.log(e.clientY);
+
+        if (x < edgeSize || x > bounds.width - edgeSize ||
+            y < edgeSize || y > bounds.height - edgeSize) {
+            alert("Closing the window!");
+            window.close(); 
+        }
+    });
+</script>
+
+</body>
+</html>
