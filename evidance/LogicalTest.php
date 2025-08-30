@@ -4,16 +4,12 @@
 interface ILogicalTest{
    static function facterial($number);
    static function IsPrime($number);
-   static function MinMax($number);
-   static function Result($number);
-   static function FileUpload($number);
+   // static function MinMax($number);
+   // static function Result($number);
+   // static function FileUpload($number);
 }
 
-
-
-
-
-class LogicalTest implements ILogicalTest{
+class LogicalTest{
 
 static function facterial($number){
  $result = 1;
