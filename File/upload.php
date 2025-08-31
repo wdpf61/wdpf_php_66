@@ -1,5 +1,5 @@
 <?php
-$fileName = null;
+$name = null;
 if (isset($_POST['btnSubmit'])) {
       //    print_r( $_FILES);
        $file = $_FILES['myfile'];   // Original file 
