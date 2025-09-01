@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if(!$_SESSION["name"] ){
-   header("location:login.php");
-}
+// if(!$_SESSION["name"] ){
+//    header("location:login.php");
+// }
  include_once ("student.class.php");
 //  require "student.class.php";
 //  require_once
@@ -24,6 +24,15 @@ if(!$_SESSION["name"] ){
      
     } 
 
+ }
+
+
+ if(isset($_POST['btn_result'])){
+    $id = $_POST['id'];
+    $student= Student::search($id);
+    echo "<h1>Id: {$student['id']}</h1>";
+    echo "<h1>Name: {$student['name']}</h1>";
+    echo "<h1>Address: {$student['address']}</h1>";
  }
 
 
@@ -146,6 +155,14 @@ if(isset($_POST['btn_update'])){
        </div>
     <?php }?>
 
+    <div>
+         <h1> Search Result</h1>
+            <form action="" method="POST">
+            <label for="n">Id</label> <br>
+            <input type="text" name="id" id="id"> <br> <br>
+            <input type="submit" name="btn_result" >
+            </form>
+       </div>
        
         
      

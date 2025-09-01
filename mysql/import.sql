@@ -1,0 +1,24 @@
+-- ===========================================
+--   FULL SQL COMMANDS WITH IMPORT/EXPORT NOTES
+-- ===========================================
+
+-- ========= IMPORT & EXPORT DATABASE (NOT SQL) =========
+-- Use these in terminal / command prompt:
+-- Export full database:
+--    mysqldump -u root -p mydb > e:/mydb_backup.sql
+--
+-- Export schema only:
+--    mysqldump -u root -p --no-data mydb > schema_only.sql
+--
+-- Export data only:
+--    mysqldump -u root -p --no-create-info mydb > data_only.sql
+--
+-- Export all databases:
+--    mysqldump -u root -p --all-databases > alldb_backup.sql
+--
+-- Import database:
+--    mysql -u root -p mydb < mydb_backup.sql
+--
+-- ============================================
+--           START SQL COMMANDS
+-- ============================================
