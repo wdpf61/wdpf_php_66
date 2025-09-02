@@ -10,18 +10,14 @@ session_start();
 //  include_once
  
  if(isset($_POST['btn_Name'])){
-    $id = $_POST['id'];
     $name = $_POST['name'];
-    $address = $_POST['address'];
-    
-    $student= new Student("",$name,$address);
+    $grade = $_POST['grade'];
+    $student= new Student("",$name,$grade);
     $save= $student->save();
     if($save){
       echo $save;
-      unset($_POST['id']);
       unset($_POST['name']);
-      unset($_POST['address']);
-     
+      unset($_POST['grade']);
     } 
 
  }
@@ -32,7 +28,7 @@ session_start();
     $student= Student::find($id);
     echo "<h1>Id: {$student['id']}</h1>";
     echo "<h1>Name: {$student['name']}</h1>";
-    echo "<h1>Address: {$student['grade']}</h1>";
+    echo "<h1>grade: {$student['grade']}</h1>";
  }
 
 
@@ -51,15 +47,15 @@ session_start();
 if(isset($_POST['btn_update'])){
     $id = $_POST['id'];
     $name = $_POST['name'];
-    $address = $_POST['address'];
+    $grade = $_POST['grade'];
     
-    $student= new Student($id, $name,$address);
+    $student= new Student($id,$name,$grade);
     $update= $student->update();
     if($update){
       echo $update;
       unset($_POST['id']);
       unset($_POST['name']);
-      unset($_POST['address']);
+      unset($_POST['grade']);
      
     } 
 
@@ -117,7 +113,7 @@ if(isset($_POST['btn_update'])){
         <a href="studentApp.php?logout=1">Logout</a>
        <div>
             <h1>Student Table </h1>
-             <a href="index.php">New Student</a>
+             <a href="studentApp.php">New Student</a>
             <?php 
                echo  Student::showStudent(); 
             ?>
@@ -129,12 +125,10 @@ if(isset($_POST['btn_update'])){
        <div>
          <h1> New Student</h1>
             <form action="" method="POST">
-            <label for="n">Id</label> <br>
-            <input type="text" name="id" id="id"> <br> <br>
             <label for="n">Give Your Name</label> <br>
             <input type="text" name="name" id="name"> <br> <br>
             <label for="n">Give Your Result</label> <br>
-            <input type="text" name="address" id="address"> <br> <br>
+            <input type="text" name="grade" id="grade"> <br> <br>
             <input type="submit" name="btn_Name" >
             </form>
        </div>
@@ -149,7 +143,7 @@ if(isset($_POST['btn_update'])){
             <label for="n">Give Your Name</label> <br>
             <input type="text" name="name" id="name" value="<?php echo $search_student['name'] ?>"  > <br> <br>
             <label for="n">Give Your Result</label> <br>
-            <input type="text" name="address" id="address" value="<?php echo $search_student['grade'] ?>"  > <br> <br>
+            <input type="text" name="grade" id="grade" value="<?php echo $search_student['grade'] ?>"  > <br> <br>
             <input type="submit" name="btn_update"  value="Update" >
             </form>
        </div>

@@ -5,25 +5,24 @@ class Student{
 
 public $id;
 public $name;
-public $address;
+public $grade;
 
-public function __construct( $_id=null, $_name,$_address,)
+public function __construct($_id,$_name,$_grade)
 {
     $this->id =$_id;
     $this->name=$_name;
-    $this->address =$_address;
+    $this->grade =$_grade;
     
 }
 public function save(){
      global $db;
-     $save= $db->query("insert into students (name, grade) values('$this->name', '$this->address')");
+     $save= $db->query("insert into students (name, grade) values('$this->name', '$this->grade')");
      if($save){
          return "Data Saved Successfully";
      }
 }
 
 public static function showStudent(){
-
  global $db;
  $data=$db->query("select * from students");
  $html= "<table>";
@@ -48,7 +47,7 @@ public static function delete($_id){
 
  public function update(){
      global $db;
-     $update= $db->query("update students set name='$this->name', grade='$this->address' where id= $this->id");
+     $update= $db->query("update students set name='$this->name', grade='$this->grade' where id= $this->id");
       if($update){
          return true;
      }
@@ -68,7 +67,7 @@ public static function delete($_id){
 
   public function __toString()
   {
-    return "$this->id | $this->name| $this->address";
+    return "$this->id | $this->name| $this->grade";
   }
 
 
