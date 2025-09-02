@@ -32,7 +32,7 @@ public static function showStudent(){
  $html.= "<tr><th>ID</th><th>Name</th> <th>Address</th> <th>Action</th></tr>";
  foreach ( $data  as $key =>$row){
     list($id,$name,$address)= explode(",",$row);
-     $html.= "<tr><td>{$id}</td><td>{$name}</td> <td>{$address}</td> <td>  <button> <a href='index.php?EditId={$id}'>Edit</a></button>  <button> <a href='index.php?id={$id}'>Delete</a></button> </td></tr>";
+     $html.= "<tr><td>{$id}</td><td>{$name}</td> <td>{$address}</td> <td>  <button> <a href='studentApp.php?EditId={$id}'>Edit</a></button>  <button> <a href='studentApp.php?id={$id}'>Delete</a></button> </td></tr>";
  }
  $html.= "</table>";
  return  $html;
