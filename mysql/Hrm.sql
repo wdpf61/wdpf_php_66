@@ -35,3 +35,17 @@ CREATE TABLE IF NOT EXISTS salary(
 -- create drop rename table 
 -- alter add delete and rename COLUMN
 -- insert update delete and show data  from a table 
+
+create TABLE users(
+    id int PRIMARY KEY auto_increment,
+    name varchar(100),
+    email varchar(100),
+    password varchar(100),
+    img varchar(100),
+    role_id int
+);
+
+create table roles(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(100)
+);
