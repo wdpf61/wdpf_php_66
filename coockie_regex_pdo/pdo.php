@@ -1,5 +1,5 @@
 <?php 
-$dsn = 'mysql:host=localhost;dbname=testdb';
+$dsn = 'mysql:host=localhost;dbname=batch66;port:3306';
 $username = 'root';
 $password = '';
 
@@ -13,25 +13,28 @@ try {
 }
 
 
-$stmt = $pdo->query("SELECT * FROM users");
-foreach ($stmt as $row) {
-    echo $row['username'] . "<br>";
-}
+// $stmt = $pdo->query("SELECT * FROM users");
+// foreach ($stmt as $row) {
+//     echo $row['name'] . "<br>";
+// }
+
+//  $userId=1;
+// $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+// $stmt->execute(['id' => $userId]);
+
+//  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+//  print_r( $user );
 
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
-$stmt->execute(['id' => $userId]);
-$user = $stmt->fetch();
-
-
-$stmt = $pdo->prepare("INSERT INTO users (username, email) VALUES (:username, :email)");
-$stmt->execute(['username' => $username, 'email' => $email]);
+// $stmt = $pdo->prepare("INSERT INTO users (username, email) VALUES (:username, :email)");
+// $stmt->execute(['username' => $username, 'email' => $email]);
 
 
 
 try {
     $pdo->beginTransaction();
     $pdo->exec("INSERT INTO users (username) VALUES ('john_doe')");
+    
     $pdo->exec("INSERT INTO orders (user_id, amount) VALUES (LAST_INSERT_ID(), 99.99)");
     $pdo->commit();
 } catch (Exception $e) {

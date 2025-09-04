@@ -1,0 +1,22 @@
+[04-Sep-2025 05:29:04 Europe/Berlin] PHP Fatal error:  Uncaught ValueError: Path cannot be empty in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php:9
+Stack trace:
+#0 E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php(9): error_log('test', 3, '')
+#1 {main}
+  thrown in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php on line 9
+[04-Sep-2025 05:45:36 Europe/Berlin] PHP Fatal error:  Uncaught ValueError: Path cannot be empty in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php:7
+Stack trace:
+#0 E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php(7): error_log('test', 3, '')
+#1 {main}
+  thrown in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php on line 7
+[04-Sep-2025 05:45:53 Europe/Berlin] PHP Warning:  Undefined variable $abc in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php on line 42
+[04-Sep-2025 05:46:36 Europe/Berlin] PHP Warning:  file_get_contents(nonexistentfile.txt): Failed to open stream: No such file or directory in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php on line 42
+[04-Sep-2025 05:51:10 Europe/Berlin] PHP Fatal error:  Uncaught ValueError: Path cannot be empty in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php:7
+Stack trace:
+#0 E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php(7): error_log('test', 3, '')
+#1 {main}
+  thrown in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php on line 7
+[04-Sep-2025 05:58:28 Europe/Berlin] PHP Fatal error:  Uncaught ValueError: Path cannot be empty in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php:7
+Stack trace:
+#0 E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php(7): error_log('test', 3, '')
+#1 {main}
+  thrown in E:\xampp\htdocs\wdpf-batch-66_class\php\phpbasic\coockie_regex_pdo\error.php on line 7

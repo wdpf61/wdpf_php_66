@@ -1,17 +1,19 @@
 <?php 
 
-//setcookie(name, value, expire, path, domain, secure, httponly);
+// setcookie(name, value, expire, path, domain, secure, httponly);
 // Set a cookie that expires in 1 hour
-//setcookie("user", "John Doe", time() + 3600, "/");
 
-if (isset($_COOKIE["user"])) {
-    echo "Hello " . $_COOKIE["user"];
-} else {
-    echo "Hello Guest";
-}
+// setcookie("user", "John Doe", time() + 3600, "/");
+
+// if (isset($_COOKIE["user"])) {
+//     echo "Hello " . $_COOKIE["user"];
+// } else {
+//     echo "Hello Guest";
+// }
 
 // // Update the "user" cookie value to "Jane Doe" and extend expiration by 1 hour
 // setcookie("user", "Jane Doe i am here", time() + 3600, "/");
+
 
 //setcookie("user", "", time() - 3600, "/");
 
