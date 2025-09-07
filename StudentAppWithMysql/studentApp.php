@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// if(!$_SESSION["name"] ){
-//    header("location:login.php");
-// }
+if(! isset($_SESSION["name"]) ){
+   header("location:login.php");
+}
  include_once ("student.class.php");
 //  require "student.class.php";
 //  require_once
@@ -108,7 +108,7 @@ if(isset($_POST['btn_update'])){
      </style>
 </head>
 <body>
-       <h1>Welcome <?php echo $_SESSION["name"] ??  "User" ; ?></h1>
+       <h1>Welcome <?php echo $_SESSION["role"] ??  "User" ; ?></h1>
 
         <a href="studentApp.php?logout=1">Logout</a>
        <div>

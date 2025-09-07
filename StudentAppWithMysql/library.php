@@ -56,8 +56,25 @@ function upload($file, $imgName = "")
     }
 
 
-   function ActionButton($data){
-      
-   }
+  
 
 }
+
+function ActionButton($data){
+      $html= "
+<form action='{$data['action']}' method='post' style='float: left;'>
+    <input type='text' name='id' value='{$data['id']}' hidden>
+     <button class='btn btn-primary' type='submit' name='{$data['btn']}'>{$data['btn_name']}</button>
+</form>
+
+";
+
+   return $html;
+}
+
+
+
+?>
+
+
+

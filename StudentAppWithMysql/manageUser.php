@@ -83,22 +83,30 @@
       <th scope="col">Email</th>
       <th scope="col">Img</th>
       <th scope="col">Role</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
         <?php
+        
            $users= User::getAll();
            
            foreach ($users as  $row) {
-           
+           $update=ActionButton(["action"=>"manageUser.php", "id"=> $row['id'], "btn"=>"btn_update", "btn_name"=>"Update" ]) ;
+          $delete=ActionButton(["action"=>"manageUser.php", "id"=> $row['id'], "btn"=>"btn_delete", "btn_name"=>"Delete" ]);
             echo "
             <tr>
                 <th scope='row'>{$row['id']}</th>
                 <td>{$row['name']}</td>
                 <td>{$row['email']}</td>
                 <td> <img src='uploads/{$row['img']}' alt='{$row['img']} ' width='50'  />     </td>
-                <td>{$row['role_id']}</td>  </tr>
+                <td>{$row['role_id']}</td>  
+                <td>{$update } {$delete}</td>  
+                 
+                
+                
+                </tr>
             ";
 
 

@@ -1,15 +1,27 @@
 <?php
 session_start();
-$_name="hasnat";
-$_password="827ccb0eea8a706c4c34a16891f84e7b";
-
+include_once "db_config.php";
 if(isset($_POST["btn_login"])){
     $name = $_POST['name'];
     $password = $_POST['password'];
     $message=[];
-    if($_name == $name && $_password == md5($password)){
-       $message= ["login"=>"Welcome $name"];
-       $_SESSION["name"]=$name;
+
+    // $stmt = $db->prepare("select name , password, role_id from users where name=? and password=?");
+    // $stmt->bind_param("ss", $name, $password);
+    // $stmt->execute();
+    // $data =$stmt->get_result()->fetch_assoc();
+
+
+    $stmt = $db->query("select users.name , users.password, roles.name as role from users , roles where users.name='$name' or users.email='$name' and users.password='$password'
+       and users.role_id= roles.id");
+    $data= $stmt->fetch_assoc();
+
+    // print_r($data);
+
+    if(count($data)){
+       $message= ["login"=>"Welcome {$data['name']}"];
+       $_SESSION["name"]= $data['name'];
+       $_SESSION["role"]= $data['role'];
        header("location:studentApp.php");
     }else{
        $message= ["login"=>"incorrect username or password"];

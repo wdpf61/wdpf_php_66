@@ -2,6 +2,7 @@
 include_once "db_config.php";
 
 class User{
+   
     public $id;
     public $name;
     public $email;
