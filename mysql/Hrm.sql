@@ -49,3 +49,12 @@ create table roles(
     id int PRIMARY KEY AUTO_INCREMENT,
     name varchar(100)
 );
+
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) ,
+    description TEXT,
+    price DECIMAL(10,2),
+    offer_price DECIMAL(10,2)
+);

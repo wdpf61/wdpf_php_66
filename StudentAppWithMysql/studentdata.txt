@@ -1,2 +1,9 @@
 1,Hasan Khaled  Mahbub,dhaka
 6,Hasan,dhaka
+
+
+1 customers
+2.orders
+
+id , name , email , address, mobile
+id, customer_id, order_total, paid_amount, created_at, updated_at 

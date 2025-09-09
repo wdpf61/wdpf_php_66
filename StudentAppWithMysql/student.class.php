@@ -56,9 +56,8 @@ public static function delete($_id){
  public static function find($_id){
     global $db;
      $data= $db->query("select * from students where id=$_id");
-   
      $student = $data->fetch_assoc();
-        if(count($student)){
+        if($student){
           return $student;
         }
      return "Data not Found";
@@ -72,6 +71,7 @@ public static function delete($_id){
 
 
 }
+
 
 ?>
 
