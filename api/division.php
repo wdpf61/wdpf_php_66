@@ -56,21 +56,6 @@ division.addEventListener("change", function(e){
 .catch(err => console.log(err));
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 
