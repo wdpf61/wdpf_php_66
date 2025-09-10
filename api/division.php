@@ -28,51 +28,49 @@ $data= $stmt->fetch_all(MYSQLI_ASSOC);
 <div>
 <h1>All Districts</h1>
 <select name="districts" id="districts">
-
+  <option value="">Choose Your Districts</option>
 </select>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
-$(document).ready(function(){
-
 let division= document.getElementById("division");
 let districts= document.getElementById("districts");
 
 division.addEventListener("change", function(e){
-let id = division.value;
+ let id = division.value;
+//  let form = new FormData();
+//  form.append("division_id",id);
 
-console.log(id);
-
-$.ajax({
-  type: "POST",
-  url: "districts.php",
-  data: {division_id:id},
-  success: function(data){
-    let parseData=JSON.parse(data);
-     console.log(parseData);
-
-     let html="";
-     parseData.forEach(element => {
-        html+= `<option value='${element.id}'>${element.name}</option>`;
-     });
-
-    districts.innerHTML=html;
-  }
-});
-
-
-
-
-});
-
-
-
-
-
-
+ fetch("districts.php", {
+   method:"POST",
+   body:JSON.stringify({id:id})
+ })
+.then(res => res.json() )
+.then(data =>{
+    let html="";
+    data.forEach(element => {
+      html+= `<option value="${element.id}">${element.name}</option>`;
+    });
+    districts.innerHTML=  html;
 })
+.catch(err => console.log(err));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 
