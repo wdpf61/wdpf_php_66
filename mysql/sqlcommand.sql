@@ -97,3 +97,47 @@ REVOKE INSERT ON demo_db.* FROM 'new_user'@'localhost';
 
 -- Show Grants
 SHOW GRANTS FOR 'new_user'@'localhost';
+
+
+
+
+
+SELECT * FROM students;
+SELECT DISTINCT class FROM students;
+SELECT name, age FROM students WHERE age > 18;
+SELECT class, COUNT(*) FROM students GROUP BY class HAVING COUNT(*) > 2;
+SELECT * FROM students ORDER BY age DESC LIMIT 5 OFFSET 2;
+
+
+
+SELECT * FROM students WHERE age BETWEEN 18 AND 25;
+SELECT * FROM students WHERE name LIKE 'R%';
+SELECT * FROM students WHERE age IN (18, 20, 22);
+SELECT * FROM students WHERE email IS NULL;
+SELECT * FROM students WHERE NOT age = 18;
+SELECT * FROM students WHERE age > 18 AND class = '10';
+
+
+
+-- ===== Aggregate =====
+SELECT COUNT(*) FROM students;
+SELECT AVG(age) FROM students;
+SELECT MAX(age), MIN(age) FROM students;
+SELECT SUM(age) FROM students;
+
+
+
+-- VIEW
+CREATE VIEW teen_students AS 
+SELECT * FROM students WHERE age BETWEEN 13 AND 19;
+DROP VIEW teen_students;
+
+
+
+--Subquery
+SELECT name FROM students
+WHERE id IN (SELECT student_id FROM results WHERE mark > 80);
+
+
+
+
