@@ -1,0 +1,20 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Old
+# RewriteRule ^api/([a-zA-Z0-9_]+)/?([a-zA-Z_]+)?/?$ api/api.php?class=$1&method=$2 [L,QSA]
+# RewriteRule ^/?([a-zA-Z-0-9\-_]+)/?$ home.php?r=$1 [L,QSA]
+
+#API Route
+RewriteRule ^api/([a-zA-Z]+)/?([a-zA-Z0-9_]+)?/([0-9]+)?/?$ api/api.php?class=$1&method=$2&id=$3 [L,QSA]
+RewriteRule ^api/([a-zA-Z]+)/?([a-zA-Z0-9_]+)?/?$ api/api.php?class=$1&method=$2 [L,QSA]
+RewriteRule ^api/?([a-zA-Z]+)/?$ api/api.php?class=$1 [L,QSA]
+
+#MVC Route
+RewriteRule ^/?([a-zA-Z0-9_]+)/?([a-zA-Z0-9_]+)?/([0-9]+)?/?$ route.php?class=$1&method=$2&id=$3 [L,QSA]
+RewriteRule ^/?([a-zA-Z0-9_]+)/?([a-zA-Z0-9_]+)?/?$ route.php?class=$1&method=$2 [L,QSA]
+RewriteRule ^/?([a-zA-Z0-9_]+)/?$ route.php?class=$1 [L,QSA]
+
+#SEO Route
+RewriteRule ^/?([a-zA-Z-0-9\-_]+)/?$ home.php?r=$1 [L,QSA]

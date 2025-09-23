@@ -86,14 +86,19 @@ COMMIT;
 -- 5. DCL Commands
 -- ***************
 -- Create User
-CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'password123';
+
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '12345';
 
 -- Grant Privileges
 GRANT SELECT, INSERT ON demo_db.* TO 'new_user'@'localhost';
 GRANT ALL PRIVILEGES ON demo_db.* TO 'new_user'@'localhost';
 
+GRANT ALL ON students TO 'tanvir';
+
 -- Revoke Privileges
 REVOKE INSERT ON demo_db.* FROM 'new_user'@'localhost';
+REVOKE ALL ON students FROM 'tanvir';
 
 -- Show Grants
 SHOW GRANTS FOR 'new_user'@'localhost';
