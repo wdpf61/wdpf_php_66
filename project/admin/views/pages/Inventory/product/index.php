@@ -25,8 +25,9 @@
                 <td>{$row['price']}</td>
                 <td>{$row['offer_price']}</td>
                 <td>
-                 <button class=\"btn btn-secondary\"><a href='$base_url/product/edit/{$row['id']}'>Edit</a></button>
-                 <button class=\"btn btn-danger\"> <a href='$base_url/product/delete/{$row['id']}'>Delete</a></button>
+                 
+                <a class=\"btn btn-info\" href='$base_url/product/edit/{$row['id']}'>Edit</a>
+                <a class=\"btn btn-danger\" href='$base_url/product/delete/{$row['id']}'>Delete</a>
                 
                 </td>
                 
