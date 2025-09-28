@@ -1,0 +1,13 @@
+<?php
+if($page=="create-project"){
+	$found=include("views/pages/ui/project/create_project.php");
+}elseif($page=="edit-project"){
+	$found=include("views/pages/ui/project/edit_project.php");
+}elseif($page=="projects"){
+	$found=include("views/pages/ui/project/manage_project.php");
+}elseif($page=="details-project"){
+	$found=include("views/pages/ui/project/details_project.php");
+}elseif($page=="view-project"){
+	$found=include("views/pages/ui/project/view_project.php");
+}
+?>

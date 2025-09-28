@@ -1,5 +1,4 @@
-<?php
-include_once("header.php");
+<?php include_once("header.php");
 
 if (isset($_GET["class"])) {
     $class = $_GET["class"] . "Controller";
@@ -8,7 +7,6 @@ if (isset($_GET["class"])) {
     if (class_exists($class)) {
 
         $obj = new $class();
-
         if (!isset($_GET["method"])) {
             $method = "index";
         } else {
@@ -33,7 +31,6 @@ if (isset($_GET["class"])) {
         if (method_exists($obj, $method)) {
 
             if ($res_method == "POST") {
-
                 //$params=array_values($_POST); 
                 $params = $_POST;
             } else if ($res_method == "GET") {
@@ -381,6 +378,24 @@ function redirect($method = "index", $message = "")
     //echo "<script>alert('$base_url/$class/$method')</script>";
 }
 
+
+
+//   function redirect($method = "index", $message = "") {
+//     global $base_url;
+//     $class = isset($_GET["class"]) ? $_GET["class"] : "home";
+//     $url = "$base_url/$class";
+//     if (!empty($method)) {
+//         $url .= "/$method";
+//     }
+//     if (!empty($message)) {
+//         $url .= "?message=" . urlencode($message);
+//     }
+//     echo "<script>window.location='$url'</script>";
+
+//     // OR safer server-side redirect (if headers not sent yet):
+//     // header("Location: $url");
+//     // exit();
+// }
 
 
 include("footer.php");

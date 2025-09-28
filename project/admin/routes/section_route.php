@@ -1,0 +1,13 @@
+<?php
+if($page=="create-section"){
+	$found=include("views/pages/ui/section/create_section.php");
+}elseif($page=="edit-section"){
+	$found=include("views/pages/ui/section/edit_section.php");
+}elseif($page=="sections"){
+	$found=include("views/pages/ui/section/manage_section.php");
+}elseif($page=="details-section"){
+	$found=include("views/pages/ui/section/details_section.php");
+}elseif($page=="view-section"){
+	$found=include("views/pages/ui/section/view_section.php");
+}
+?>

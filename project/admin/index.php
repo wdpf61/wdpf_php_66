@@ -1,6 +1,6 @@
 <?php session_start();  
   require_once("configs/db_config.php");
-  if(isset($_SESSION["uid"])) header("location:home");
+  $base_url="cpanel";
   //require_once("library/classes/system_log.class.php");
   
   if(isset($_POST["btnSignIn"])){

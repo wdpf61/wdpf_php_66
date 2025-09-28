@@ -1,0 +1,13 @@
+<?php
+if($page=="create-role"){
+	$found=include("views/pages/ui/role/create_role.php");
+}elseif($page=="edit-role"){
+	$found=include("views/pages/ui/role/edit_role.php");
+}elseif($page=="roles"){
+	$found=include("views/pages/ui/role/manage_role.php");
+}elseif($page=="details-role"){
+	$found=include("views/pages/ui/role/details_role.php");
+}elseif($page=="view-role"){
+	$found=include("views/pages/ui/role/view_role.php");
+}
+?>

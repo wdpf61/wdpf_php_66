@@ -1,0 +1,13 @@
+<?php
+if($page=="create-contact"){
+	$found=include("views/pages/ui/contact/create_contact.php");
+}elseif($page=="edit-contact"){
+	$found=include("views/pages/ui/contact/edit_contact.php");
+}elseif($page=="contacts"){
+	$found=include("views/pages/ui/contact/manage_contact.php");
+}elseif($page=="details-contact"){
+	$found=include("views/pages/ui/contact/details_contact.php");
+}elseif($page=="view-contact"){
+	$found=include("views/pages/ui/contact/view_contact.php");
+}
+?>

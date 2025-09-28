@@ -1,0 +1,13 @@
+<?php
+if($page=="create-product-group-detail"){
+	$found=include("views/pages/ui/product_group_detail/create_product_group_detail.php");
+}elseif($page=="edit-product-group-detail"){
+	$found=include("views/pages/ui/product_group_detail/edit_product_group_detail.php");
+}elseif($page=="manage-product-group-detail"){
+	$found=include("views/pages/ui/product_group_detail/manage_product_group_detail.php");
+}elseif($page=="details-product-group-detail"){
+	$found=include("views/pages/ui/product_group_detail/details_product_group_detail.php");
+}elseif($page=="view-product-group-detail"){
+	$found=include("views/pages/ui/product_group_detail/view_product_group_detail.php");
+}
+?>

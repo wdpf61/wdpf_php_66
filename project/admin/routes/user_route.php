@@ -1,0 +1,13 @@
+<?php
+if($page=="create-user"){
+	$found=include("views/pages/system/user/create_user.php");
+}elseif($page=="edit-user"){
+	$found=include("views/pages/system/user/edit_user.php");
+}elseif($page=="users"){
+	$found=include("views/pages/system/user/manage_user.php");
+}elseif($page=="details-user"){
+	$found=include("views/pages/system/user/details_user.php");
+}elseif($page=="view-user"){
+	$found=include("views/pages/system/user/view_user.php");
+}
+?>

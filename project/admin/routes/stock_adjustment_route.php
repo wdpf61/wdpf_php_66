@@ -1,0 +1,13 @@
+<?php
+if($page=="create-stock-adjustment"){
+	$found=include("views/pages/stock_adjustment/create_stock_adjustment.php");
+}elseif($page=="edit-stock-adjustment"){
+	$found=include("views/pages/stock_adjustment/edit_stock_adjustment.php");
+}elseif($page=="manage-stock-adjustment"){
+	$found=include("views/pages/stock_adjustment/manage_stock_adjustment.php");
+}elseif($page=="details-stock-adjustment"){
+	$found=include("views/pages/stock_adjustment/details_stock_adjustment.php");
+}elseif($page=="view-stock-adjustment"){
+	$found=include("views/pages/stock_adjustment/view_stock_adjustment.php");
+}
+?>

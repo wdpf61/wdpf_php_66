@@ -1,0 +1,13 @@
+<?php
+if($page=="create-product-group"){
+	$found=include("views/pages/ui/product_group/create_product_group.php");
+}elseif($page=="edit-product-group"){
+	$found=include("views/pages/ui/product_group/edit_product_group.php");
+}elseif($page=="manage-product-group"){
+	$found=include("views/pages/ui/product_group/manage_product_group.php");
+}elseif($page=="details-product-group"){
+	$found=include("views/pages/ui/product_group/details_product_group.php");
+}elseif($page=="view-product-group"){
+	$found=include("views/pages/ui/product_group/view_product_group.php");
+}
+?>

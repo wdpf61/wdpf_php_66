@@ -1,0 +1,13 @@
+<?php
+if($page=="create-purchase"){
+	$found=include("views/pages/purchase/create_purchase.php");
+}elseif($page=="edit-purchase"){
+	$found=include("views/pages/purchase/edit_purchase.php");
+}elseif($page=="manage-purchase"){
+	$found=include("views/pages/purchase/manage_purchase.php");
+}elseif($page=="details-purchase"){
+	$found=include("views/pages/purchase/details_purchase.php");
+}elseif($page=="view-purchase"){
+	$found=include("views/pages/purchase/view_purchase.php");
+}
+?>

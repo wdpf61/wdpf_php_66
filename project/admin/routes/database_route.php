@@ -1,0 +1,13 @@
+<?php
+if($page=="create-database"){
+	$found=include("views/pages/ui/database/create_database.php");
+}elseif($page=="edit-database"){
+	$found=include("views/pages/ui/database/edit_database.php");
+}elseif($page=="manage-database"){
+	$found=include("views/pages/ui/database/manage_database.php");
+}elseif($page=="details-database"){
+	$found=include("views/pages/ui/database/details_database.php");
+}elseif($page=="view-database"){
+	$found=include("views/pages/ui/database/view_database.php");
+}
+?>

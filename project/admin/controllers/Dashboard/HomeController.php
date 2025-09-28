@@ -10,6 +10,11 @@ class HomeController{
        view("dashboard");
     }
 
+
+    public function test(){
+      view("dashboard");
+    }
+
     
 }
 

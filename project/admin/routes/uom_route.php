@@ -1,0 +1,13 @@
+<?php
+if($page=="create-uom"){
+	$found=include("views/pages/ui/uom/create_uom.php");
+}elseif($page=="edit-uom"){
+	$found=include("views/pages/ui/uom/edit_uom.php");
+}elseif($page=="uoms"){
+	$found=include("views/pages/ui/uom/manage_uom.php");
+}elseif($page=="details-uom"){
+	$found=include("views/pages/ui/uom/details_uom.php");
+}elseif($page=="view-uom"){
+	$found=include("views/pages/ui/uom/view_uom.php");
+}
+?>
