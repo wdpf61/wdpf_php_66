@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Selectors</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .highlight {color: rgb(255, 51, 0); }
+  </style>
+</head>
+<body>
+  <h1 id="main-title">Main Title</h1>
+
+  <p class="intro">This is an introductory paragraph.</p>
+  <p>This is a regular paragraph.</p>
+  <p class="intro">Another introductory paragraph.</p>
+  <p class="intro">Another 4th paragraph.</p>
+
+ 
+  <div> this is div contain with p
+    <p class="myclass">this is div p</p>
+     <div>this fkdsjfkds</div>
+  </div>
+  <div> this is div contain with p2
+    <p class="myclass">this is div p</p>
+     <div>this fkdsjfkds</div>
+  </div>
+
+
+  <div>
+    <ul>
+      <li>Item 1</li>
+      <li class="selected">Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+    </ul>
+  </div>
+
+  <input type="text" id="name" value="John Doe">
+
+  <input type="checkbox" checked>
+
+  <input type="radio" name="gender" value="male" checked> Male
+  <input type="radio" name="gender" value="female"> Female
+
+  <a href="https://www.google.com/" class="link">Click here</a>
+  <p> this is p tag</p>
+  
+  
+  <button id="btn">Submit</button>
+
+  <span>Just a span</span>
+  <span></span>
+  <a href="" rel="css">abc</a>
+  <input type="text" name="abc" value="dedsfsdfsdf">
+  <input type="text" name="Thought is most valuable thing" value="love">
+
+
+
+  <script>
+    $(document).ready(function () {
+      // Examples for various selectors
+
+    //   // 1. Universal Selector
+    //  $("*").addClass("highlight"); // Highlights all elements
+
+      // 2. Type Selector
+      // $("p").css("color", "blue"); // Selects all <p> elements
+
+    //   // 3. ID Selector
+      // $("#main-title").css("text-align", "center"); // Selects the element with ID 'main-title'
+
+    //   // 4. Class Selector
+    //  $(".intro").css("font-style", "italic"); // Selects all elements with class 'intro'
+
+    //   // 5. Group Selector
+    // $("p, li").css({"border": "1px solid red", "background-color": "green"}); // Selects all <p> and <li> elements
+
+    //   // 6. Descendant Selector
+    //  $("div ul li").css("list-style", "none"); // Selects <li> elements inside a <ul> in a <div>
+    //  $("div ul li:not(.selected)").css("list-style", "none"); // Selects <li> elements inside a <ul> in a <div>
+
+    //   // 7. Child Selector
+      // $("div > ul").css("padding", "0"); // Selects direct child <ul> elements of <div>
+     //$("div div").css("color", "yellow"); // Selects direct child <ul> elements of <div>
+
+    //   // 8. Adjacent Sibling Selector
+     // $("#main-title + p").css("text-decoration", "underline"); // Selects the <p> immediately after #main-title
+
+    //   // 9. General Sibling Selector
+    //  $("#main-title ~ p").css("background", "lightgray"); // Selects all <p> after #main-title
+
+    //   // 10. Attribute Selector
+    // $("input[type='text']").css({"color":"red" ,"padding":"5px"}); // Selects all radio input elements
+
+    //   // 11. Attribute Contains Selector
+     // $("a[href*='com']").css("color", "green"); // Selects <a> elements whose href contains 'click'
+
+    //   // 12. :first Selector
+     //$("p:first").css("font-weight", "bold"); // Selects the first <p> element
+
+    //   // 13. :last Selector
+    //  $("p:last").css("color", "red"); // Selects the last <p> element
+
+    //   // 14. :nth-child Selector
+      // $("li:nth-child(2n)").css("color", "green"); // Selects the second <li> element
+
+    //   // 15. :even Selector
+     // $("li:even").css("background", "#f0f0f0"); // Selects even-indexed <li> elements (0-based index)
+
+    //   // 16. :odd Selector
+     // $("li:odd").css("background", "#ccc"); // Selects odd-indexed <li> elements (0-based index)
+
+    //   // 17. :focus Selector
+      // $("#name").focus(function () {
+      //   $(this).css("border", "5px solid blue");
+      // });
+      // // $("#name").focus().css("border", "5px solid blue");
+      // //  $("#name").on("focus",function(){
+      // //   $(this).css("border", "5px solid blue");
+      // //  })
+      //  $("#name").on("blur",function(){
+      //   $(this).css("border", "3px solid green");
+      //  })
+    
+
+    //   // 18. :contains Selector
+    //  $("p:contains('Another')").css("background", "pink"); // Selects <p> elements containing the text 'Another'
+
+    //   // 19. :empty Selector
+        //  $("span:empty").text("Now I have  text!"); // Selects empty <span> elements
+
+    //   // 20. :hidden Selector
+        // $("input[type='checkbox']").hide();
+      //  $("input[type='checkbox']:hidden").show(); // Selects hidden elements and makes them visible
+
+
+    //   // 21. :visible Selector
+      // $(":visible").css("border", "2px solid green"); // Selects visible elements
+    //   // 22. :parent Selector
+      //$("p.myclass:parent").css("border", "2px solid green"); // Selects visible elements
+      //let p =$("div:has(p)").css("border", "2px solid green");
+      //  $("a[rel]").css("border", "2px solid green");
+      //console.log(p);
+
+      // $("input[name='abc']").css("border", "2px solid green");
+      //$("input[name*='thing']").css("border", "2px solid green");
+
+        // $("li:eq(0)").css("background","red");
+        // $("li:gt(2)").css("background","red");
+        // $("li:lt(2)").css("background","red");
+    
+      
+     });
+  </script>
+</body>
+</html>

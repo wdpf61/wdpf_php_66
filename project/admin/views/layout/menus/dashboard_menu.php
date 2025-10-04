@@ -24,3 +24,11 @@
         </p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="<?php echo $base_url?>/vendor/create" class="nav-link">
+        <i class="nav-icon fa fa-th"></i>
+        <p>
+          vendor
+        </p>
+    </a>
+</li>

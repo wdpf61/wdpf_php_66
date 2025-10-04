@@ -1,0 +1,21 @@
+<select id="mySelect">
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+  
+  <button id="getValues">Get Values</button>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+     $(document).ready(function() {
+        $('select').on('change', function() {
+        var selectedText = $(this).find('option:selected').text(); // Get the text of the selected option
+        var selectedValue = $(this).val(); // Get the value of the selected option
+        
+        console.log('Selected Text: ' + selectedText);
+        console.log('Selected Value: ' + selectedValue);
+    });
+    });
+  </script>
+  

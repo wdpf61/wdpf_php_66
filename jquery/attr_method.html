@@ -1,0 +1,173 @@
+<!-- 
+attr(): Get or set attributes of elements.
+removeAttr(): Remove an attribute.
+prop(): Get or set properties of elements.
+removeProp(): Remove a property.
+data(): Get or set custom data-* attributes.
+val(): Get or set the value of form inputs.
+hasClass(): Check if an element has a specific class.
+addClass(): Add a class to an element.
+removeClass(): Remove a class from an element.
+toggleClass(): Toggle a class on an element.
+is(): Check if an element matches a selector.
+:hidden, :visible: Show or hide elements and check their visibility.
+css(): Get or set inline styles of elements.
+text(): Get or set the text content of elements.
+html(): Get or set the HTML content of elements. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Attribute Methods</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .highlight { background-color: yellow; }
+  </style>
+</head>
+<body>
+  <h1 id="main-title" data-info="Header" data-rakib="Raqeeb" class="header-title">Main Title</h1>
+  
+  <a id="w3" href="www.w3school.com" target="_blank" class="external-link">Visit Example</a>
+  <a id="google" href="www.w3school.com" target="_blank" class="external-link">Visit Example2</a>
+  <a id="nasa" href="www.w3school.com" target="_blank" class="external-link">Visit Example3</a>
+
+
+
+  <input type="text" id="name" value="John Doe">
+  <button id="btn" >Submit</button>
+  <img id="image"  alt="Sample Image">
+  <div id="container" data-role="content" style="display: visible;"> 
+    this hidden container
+  </div>
+  <p class="intro" hidden>This is hidden text.</p>
+
+  <script>
+    $(document).ready(function () {
+      /*** 1. attr() - Get and set attributes ***/
+      // Get an attribute
+      // const linkHref = $("a").attr("href","https://google.com");
+      $("#nasa").attr("href", "https://www.nasa.gov/");
+      // console.log( linkHref);
+
+      // Set an attribute
+      $("a").attr("title", "Click to visit Example");
+
+      //Set multiple attributes
+      // $("#image").attr({
+      //   width: "400",
+      //   height: "300",
+      //   src:"img.jpg"
+      // });
+
+
+
+      /*** 2. removeAttr() - Remove an attribute ***/
+    //  $("a").removeAttr("title"); // Enables the button
+
+      // /*** 3. prop() - Get and set properties ***/
+      // Get a property
+      // const isDisabled = $("#btn").prop("disabled", true);
+      // console.log("Is button disabled:", isDisabled);
+
+      // // Set a property
+      // $("#btn").prop("disabled", true); // Disables the button again
+
+      // /*** 4. removeProp() - Remove a property (rarely used) ***/
+      // $("#btn").removeProp("disabled"); // Removes 'disabled' property
+
+      // // /*** 5. data() - Get and set data-* attributes ***/
+      // // // Get data attribute
+      // const headerData = $("#main-title").data("info");
+      // console.log( headerData);
+      //  let data_rakib=$("#main-title").data("rakib");
+      //  console.log("Header data_rakib:", data_rakib);
+      // // Set data attribute
+      // $("#main-title").data("info", "Updated Header");
+      // console.log("Updated data-info:", $("#main-title").data("info"));
+
+      // /*** 6. val() - Get and set form field values ***/
+      // // Get the value of an input
+      // const inputValue = $("#name").val();
+      // let h1value= $("#main-title").html()
+      // console.log( h1value);
+
+       $("#btn").on("click",function(){
+        const inputValue = $("#name").val();
+        console.log("Input value:", inputValue);
+       });
+
+      // // Set the value of an input
+      // $("#name").val("Jane Doe");
+
+      // /*** 7. hasClass() - Check if an element has a class ***/
+      // const hasHeaderClass = $("#main-title").hasClass("header-title");
+      // console.log("Header has class 'header-title':", hasHeaderClass);
+
+      // /*** 8. addClass() - Add a class to an element ***/
+      // $("#main-title").addClass("highlight");
+
+      // /*** 9. removeClass() - Remove a class from an element ***/
+      // $("#main-title").removeClass("highlight");
+
+      // /*** 10. toggleClass() - Toggle a class ***/
+      // $("#main-title").toggleClass("highlight");
+
+      // // /*** 11. is() - Check if an element matches a selector ***/
+       $("#container").hide();
+      // const isHidden = $("#container").is(":hidden");
+      // // $("#container").show();
+     
+      // console.log("Container is hidden:", isHidden);
+
+      // /*** 12. hidden() and visible() - Show or hide elements ***/
+      // // Show a hidden element
+      // $("#container").show();
+
+      // // Check if an element is visible
+      // const isVisible = $("#container").is(":visible");
+      // console.log("Container is visible:", isVisible);
+
+      // /*** 13. css() - Manipulate inline styles ***/
+      // // Get a CSS property
+      // const bgColor = $("#main-title").css("background-color");
+      // console.log("Background color:", bgColor);
+
+      // // Set a CSS property
+      // $("#main-title").css("background-color", "lightblue");
+
+      // // Set multiple CSS properties
+      // $("#main-title").css({
+      //   color: "white",
+      //   "font-size": "24px"
+      // });
+
+      // /*** 14. text() - Get and set the text content of an element ***/
+      // // Get text content
+      // const linkText = $("a").text();
+      // console.log("Link text:", linkText);
+
+      // // // Set text content
+      //  $("a").text("Updated Link Text");
+
+      // /*** 15. html() - Get and set the HTML content of an element ***/
+      // // Get HTML content
+      // const htmlContent = $("#container").html();
+      // console.log("Container HTML content:", htmlContent);
+
+      // Set HTML content
+      // $("#container").html("<strong>New Content Added!</strong>");
+
+      // const hasAlt = $("#image").attr("alt");
+      // console.log("Image has 'alt' attribute:", hasAlt);
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+

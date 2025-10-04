@@ -41,7 +41,6 @@ create procedure all_orders()
 BEGIN
 select * from orders;
 END $$
-
 DELIMITER ;
 
 
