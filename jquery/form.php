@@ -78,11 +78,6 @@
              console.log(error); 
            }
           });
-          
-
-
-
-
        });
      })
    </script>

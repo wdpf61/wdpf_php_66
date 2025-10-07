@@ -3,7 +3,7 @@
    
      define("SERVER","localhost");
      define("USER","root");
-     define("DATABASE","batch66");
+     define("DATABASE","test");
      define("PASSWORD","");
 
    //Local
