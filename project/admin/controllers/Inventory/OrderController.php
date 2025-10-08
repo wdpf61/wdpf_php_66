@@ -127,5 +127,9 @@ public function update($data,$file){
 		$data= Order::find($id);
 		view("Inventory",$data);
 	}
+	public function find_customer($id){
+		$data= Customer::find($id);
+		return json_encode($data);
+	}
 }
 ?>

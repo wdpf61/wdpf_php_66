@@ -94,7 +94,7 @@ class Customer extends Model implements JsonSerializable{
 
 	static function html_select($name="cmbCustomer"){
 		global $db,$tx;
-		$html="<select id='$name' name='$name'> ";
+		$html="<select class='form-select' id='$name' name='$name'> ";
 		$result =$db->query("select id,name from {$tx}customers");
 		while($customer=$result->fetch_object()){
 			$html.="<option value ='$customer->id'>$customer->name</option>";

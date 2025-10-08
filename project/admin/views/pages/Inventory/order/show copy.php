@@ -1,13 +1,15 @@
 
-  <style>
+  <!-- <style>
     /* Small visual tweaks */
     body { background: #f6f8fb; color: #212529; padding: 2rem; }
     .invoice { background: #fff; padding: 2rem; border-radius: .5rem; box-shadow: 0 6px 18px rgba(0,0,0,.06);}
+    
+
     .table thead th { border-bottom: 2px solid #e9ecef; }
     .no-break { page-break-inside: avoid; }
     /* Print styles: hide controls that are not part of invoice */
     @media print {
-      body { background: #fff; padding: 0; }
+       body { background: #fff; padding: 0; }
       .no-print { display: none !important; }
       .invoice { box-shadow: none; border: none; margin: 0; border-radius: 0; }
     }
@@ -21,7 +23,59 @@
       padding: 0.25rem 0;
     }
     .table input:focus { outline: none; }
+
+
+    
+  </style> -->
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice Print Test</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f6f8fb;
+      color: #212529;
+      padding: 2rem;
+    }
+    .invoice {
+      background: #fff;
+      padding: 2rem;
+      border-radius: .5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+    }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      html, body {
+        background: #fff !important;
+        color: #000 !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .invoice {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+        transform: none !important;
+      }
+    }
   </style>
+</head>
+<body>
 
   <div class="container">
     <div class="invoice mx-auto" style="max-width: 900px;">
@@ -33,7 +87,7 @@
         </div>
         <div class="text-end">
           <h4 class="mb-0">INVOICE</h4>
-          <small class="text-muted"> #000<?php
+          <small id="invoiceNumber" class="text-muted"> #000<?php
             echo $order->id;
           ?> </small><br>
           <small class="text-muted">Issue: <?php
@@ -156,7 +210,7 @@
           <small class="text-muted">Bank: Your Bank · A/C: 000-000-000 · SWIFT: ABCDXX</small>
         </div>
         <div>
-          <button onclick="print()" class="btn btn-success me-2" id="printBtn">Print / Save PDF</button>
+          <button class="btn btn-success me-2" id="printBtn">Print / Save PDF</button>
           <button class="btn btn-primary" id="downloadBtn">Download HTML</button>
         </div>
       </div>
@@ -167,5 +221,27 @@
 
 
   <script>
-   
+      // Download HTML as file
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const html = '<!doctype html>\\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = (document.getElementById('invoiceNumber').value || 'invoice') + '.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    //  document.getElementById('printBtn').addEventListener('click', () => {
+    //   // set issue date default if blank
+    //   window.print();
+    // });
+
+    document.getElementById('printBtn').addEventListener('click', () => {
+  setTimeout(() => window.print(), 300); // small delay ensures rendering
+});
+
   </script>

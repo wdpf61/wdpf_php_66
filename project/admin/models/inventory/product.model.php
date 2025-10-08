@@ -44,16 +44,17 @@ public static function delete($id){
    return true;
 }
 
-// public static function GetAllHtml(){
-//    global $db, $tx; 
-//    $products= $db->query("select * from {$tx}products");
 
-
-
-
-//    return $products->fetch_all(MYSQLI_ASSOC);
-// }
-
+static function html_select($name="cmbProduct"){
+		global $db,$tx;
+		$html="<select class='form-select' id='$name' name='$name'> ";
+		$result =$db->query("select * from {$tx}products");
+		while($product=$result->fetch_object()){
+			$html.="<option value ='$product->id'>$product->name</option>";
+		}
+		$html.="</select>";
+		return $html;
+	}
 
 
 }

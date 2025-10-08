@@ -34,22 +34,27 @@
         </div>
         <div class="text-end">
           <h4 class="mb-0">INVOICE</h4>
-          <small class="text-muted">#<input id="invoiceNumber" value="2025-0001" style="width:120px; border:none; background:transparent;"></small><br>
-          <small class="text-muted">Issue: <input id="issueDate" type="date" value=""></small>
+          <small class="text-muted">#000<?php
+            echo Order::get_last_id()+1;
+          ?></small><br>
+          <small class="text-muted">Issue date: <?= date("d-m-Y")?> </small>
         </div>
       </div>
 
       <div class="row mb-4">
         <div class="col-sm-6">
           <h6 class="mb-1">Bill To</h6>
-          <input id="billTo" class="form-control form-control-sm" value="Customer Name">
-          <textarea id="billAddress" class="form-control form-control-sm mt-2" rows="2">Customer address line 1
-City, Country</textarea>
+          <!-- <input id="billTo" class="form-control form-control-sm" value="Customer Name"> -->
+           <?php
+              echo Customer::html_select("customer");
+           ?>
+          <textarea id="Address" class="form-control form-control-sm mt-2 billAddress" rows="2">Customer address line 1
+            City, Country</textarea>
         </div>
         <div class="col-sm-6 text-sm-end">
           <h6 class="mb-1">Ship To</h6>
           <input id="shipTo" class="form-control form-control-sm" value="Customer Receiver (optional)">
-          <textarea id="shipAddress" class="form-control form-control-sm mt-2" rows="2">Shipping address</textarea>
+          <textarea id="shipAddress" class="form-control form-control-sm mt-2 billAddress" rows="2">Shipping address</textarea>
         </div>
       </div>
 
@@ -64,16 +69,23 @@ City, Country</textarea>
               <th style="width: 15%;">Line Total</th>
               <th style="width: 10%;" class="no-print"> </th>
             </tr>
-          </thead>
-          <tbody id="items">
+
             <tr class="item-row">
               <td class="align-middle">1</td>
-              <td><input type="text" class="form-control form-control-sm desc" value="Example product / service"></td>
+              <td>
+                   <?php
+                       echo Product::html_select("product");
+                   ?>
+              </td>
               <td><input type="number" min="0" step="1" class="form-control form-control-sm qty" value="1"></td>
               <td><input type="number" min="0" step="0.01" class="form-control form-control-sm price" value="100.00"></td>
               <td class="line-total align-middle">100.00</td>
-              <td class="no-print text-end"><button class="btn btn-sm btn-outline-danger remove-row">Remove</button></td>
+              <td class="no-print text-end"><button class="btn btn-sm btn-outline-success add-row">Add</button></td>
             </tr>
+
+          </thead>
+          <tbody id="items">
+           
           </tbody>
         </table>
       </div>
@@ -130,5 +142,84 @@ City, Country</textarea>
 
 
   <script>
+   $(function(){
    
+    $("#customer").on("change", function(){
+      let customer_id =  $(this).val();
+      //alert(customer_id);
+      $.ajax({
+        url:"<?=$base_url?>/api/customer/find",
+        type:"GET",
+        data:{id:customer_id},
+        success:function(res){
+          console.log("before json",res);
+         let data = JSON.parse(res);
+          console.log("after json",data);
+          $(".billAddress").val(data.address);
+        },
+        error:function(err){
+           console.log(err);
+        }
+      });
+
+
+
+
+    });
+    $("#product").on("change", function(){
+      let product_id =  $(this).val();
+      let product_name =  $(this).find("option:selected").text();
+     
+      //alert(customer_id);
+      $.ajax({
+        url:"<?=$base_url?>/api/product/find",
+        type:"GET",
+        data:{id:product_id},
+        success:function(res){
+         let data = JSON.parse(res);
+          console.log("after json",data);
+          $(".price").val(data.regular_price);
+          $(".line-total").text(data.regular_price);
+          $(".qty").val(1);
+        },
+        error:function(err){
+           console.log(err);
+        }
+      });
+
+
+
+
+    });
+
+    $(".qty").on("change", function(){
+      let val = $(this).val()
+      let price =  $(".price").val();
+      $(".line-total").text(price * val);
+    });
+
+    $(".add-row").on("click", function(){
+      let product_name =  $("#product").find("option:selected").text();
+      let qty = $(".qty").val()
+      let price =  $(".price").val();
+      let line_total = $(".line-total").text();
+      let html=`
+       <tr class="item-row">
+              <td class="align-middle">1</td>
+              <td><input type="text" class="form-control form-control-sm desc" value="${product_name}"></td>
+              <td><input type="number" min="0" step="1" class="form-control form-control-sm " value="${qty}"></td>
+              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " value="${price}"></td>
+              <td class=" align-middle">${line_total}</td>
+              <td class="no-print text-end"><button class="btn btn-sm btn-outline-danger remove-row">Remove</button></td>
+            </tr>
+      `;
+
+      $("#items").append( html);
+    })
+
+
+   })
+
+
+
   </script>
