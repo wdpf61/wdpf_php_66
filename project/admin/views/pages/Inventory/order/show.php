@@ -1,4 +1,15 @@
 
+<?php
+    // print_r($order);
+   $order_details=  OrderDetail::find_by_order_id($order->id);
+  //  print_r(  $order_details);
+  foreach ($order_details as $key => $value) {
+     $product = Product::find($value->product_id);
+     print_r($product );
+  }
+    $customer= Customer::find($order->customer_id);
+  //  print_r(   $customer);
+?>
   <style>
     /* Small visual tweaks */
     body { background: #f6f8fb; color: #212529; padding: 2rem; }
@@ -106,7 +117,6 @@
               $total+=$total_price;
               $tax+= $value['vat'];
                $count ++;
-
               }
 
 

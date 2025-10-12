@@ -49,6 +49,7 @@
    $(function(){
        
        $("select").select2();
+      
 
    });
 </script>

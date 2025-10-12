@@ -45,20 +45,8 @@
         <div class="col-sm-6">
           <h6 class="mb-1">Bill To</h6>
           <!-- <input id="billTo" class="form-control form-control-sm" value="Customer Name"> -->
-            
-           
            <?php
-               echo Customer::html_select("customer");
-              //  $customer= Customer::all();
-              // $html="<select id='customer' name='customer'>";
-              // foreach ( $customer as $key => $value) {
-              //  $html.="<option value='$value->id'>$value->name</option>";
-              // }
-
-              // $html.="</select>";
-
-              // echo $html;
-
+              echo Customer::html_select("customer");
            ?>
           <textarea id="Address" class="form-control form-control-sm mt-2 billAddress" rows="2">Customer address line 1
             City, Country</textarea>
@@ -92,9 +80,9 @@
                    ?>
               </td>
               <td><input type="number" min="0" step="1" class="form-control form-control-sm qty" value="1"></td>
-              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm  price" readonly value="100.00"></td>
-              <td><input type="number" min="0"  class="form-control form-control-sm tax" value="0"></td>
-              <td><input type="number" min="0"  class="form-control form-control-sm discount" value="0"></td>
+              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm price" value="100.00"></td>
+              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm tax" value="0"></td>
+              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm discount" value="0"></td>
               <td class="line-total align-middle">100.00</td>
               <td class="no-print text-end"><button class="btn btn-sm btn-outline-success add-row">Add</button></td>
             </tr>
@@ -118,16 +106,18 @@
 
             <div class="col-6 text-muted">Tax (%)</div>
             <div class="col-6 text-end">
-              <input id="taxPercent" type="number"  class="form-control form-control-sm" value="0">
+              <input id="taxPercent" type="number" min="0" step="0.01" class="form-control form-control-sm" value="0">
             </div>
 
             <div class="col-6 text-muted">Discount</div>
             <div class="col-6 text-end">
-              <input id="discount" type="number"  class="form-control form-control-sm" value="0">
+              <input id="discount" type="number" min="0" step="0.01" class="form-control form-control-sm" value="0">
             </div>
 
-         
-           
+            <div class="col-6 text-muted">Shipping</div>
+            <div class="col-6 text-end">
+              <input id="shipping" type="number" min="0" step="0.01" class="form-control form-control-sm" value="0.00">
+            </div>
 
             <div class="col-6 text-muted">Total</div>
             <div class="col-6 text-end fs-5 fw-bold" id="grandTotal">100.00</div>
@@ -154,13 +144,11 @@
 
   <!-- Bootstrap JS bundle -->
 
-  <script src="<?= $base_url?>/js/cart2.js"></script>
+
+
   <script>
    $(function(){
    
-    const cart= new Cart("order");
-    printCart();
-
     $("#customer").on("change", function(){
       let customer_id =  $(this).val();
       //alert(customer_id);
@@ -169,26 +157,17 @@
         type:"GET",
         data:{id:customer_id},
         success:function(res){
-        // console.log(res);
+          console.log("before json",res);
          let data = JSON.parse(res);
-          $(".billAddress").val(data.address);  
+          console.log("after json",data);
+          $(".billAddress").val(data.address);
         },
         error:function(err){
            console.log(err);
         }
       });
 
-    // $.ajax({
-    //   url:"",
-    //   type:"",
-    //   data:{},
-    //   success:function(res){
 
-    //   },
-    //   error:function(){
-
-    //   }
-    // });
 
 
     });
@@ -218,88 +197,43 @@
 
     });
 
-    $(document).on("change",".tax, .discount, .qty ", function(){
-      let qty = $(".qty").val()
-      let discount = $(".discount").val()
-      let tax = $(".tax").val()
+    $(".qty").on("change", function(){
+      let val = $(this).val()
       let price =  $(".price").val();
-      $(".line-total").text( Math.round((price * qty)+ tax - discount) );
+      $(".line-total").text(price * val);
     });
 
     $(".add-row").on("click", function(){
-      let product_id =  $("#product").val();
       let product_name =  $("#product").find("option:selected").text();
-      let qty = parseFloat( $(".qty").val());
+      let qty = $(".qty").val()
       let price =  $(".price").val();
       let tax =  $(".tax").val();
       let discount =  $(".discount").val();
       let line_total = $(".line-total").text();
-    
-      let data={
-          id:product_id,
-          name:product_name,
-          qty: qty,
-          price:price,
-          tax:tax,
-          discount:discount,
-          line_total:line_total
-      }
-       cart.AddItem(data);
-       printCart();
+      let html=`
+       <tr class="item-row">
+              <td class="align-middle">1</td>
+              <td><input type="text" class="form-control form-control-sm desc" value="${product_name}"></td>
+              <td><input type="number" min="0" step="1" class="form-control form-control-sm " value="${qty}"></td>
+              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " value="${price}"></td>
+              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " value="${tax}"></td>
+              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " value="${discount}"></td>
+              <td class=" align-middle">${line_total}</td>
+              <td class="no-print text-end"><button class="btn btn-sm btn-outline-danger remove-row">Remove</button></td>
+            </tr>
+      `;
+
+      $("#items").append( html);
     })
 
     $(document).on("click",".remove-row", function(){
-     let id=  $(this).data("id");
-     //console.log(id);
-     cart.delItem(id);
-     printCart();
-     
-    }) 
-     
+      $(this).closest("tr").remove();
 
-    function printCart(){
-      let data = cart.getData();
-      
-      let html="";
-      let tax=0;
-      let total=0;
-      let discount=0;
-      data.forEach((element,i) => {
-       tax += parseFloat(element.tax) ;
-       discount += parseFloat(element.discount) ;
-       total += parseFloat(element.line_total) ;
-        html+= `
-         <tr class="item-row">
-              <td class="align-middle">${++i}</td>
-              <td><input type="text" class="form-control form-control-sm desc" value="${element.name}"></td>
-              <td><input type="number" min="0" step="1" class="form-control form-control-sm "readonly value="${element.qty}"></td>
-              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " readonly value="${element.price}"></td>
-              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " readonly value="${element.tax}"></td>
-              <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " readonly value="${element.discount}"></td>
-              <td class=" align-middle">${element.line_total}</td>
-              <td class="no-print text-end"><button class="btn btn-sm btn-outline-danger remove-row " data-id="${element.id}">Remove</button></td>
-          </tr>
-        
-        
-        `;
-
-      });
-
-       $("#items").html(html);
-       $("#subtotal").text();
-       $("#taxPercent").val(tax);
-       $("#discount").val(discount);
-       $("#grandTotal").text(total);
-       
-    }
-    
+    })  
 
 
    })
 
-  //  localStorage.setItem("name", "Rashedul");
-  //  console.log(localStorage.getItem("name"));
-  //  localStorage.removeItem("name");
-  //  localStorage.clear();
-   
+
+
   </script>
