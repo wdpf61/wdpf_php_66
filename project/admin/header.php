@@ -45,7 +45,8 @@
   <!-- <script src="https://use.fontawesome.com/bf6432abac.js"></script> -->
   
   <!-- jQuery -->
-
+   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="<?php echo $base_url?>/asset/plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

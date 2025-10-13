@@ -1,28 +1,62 @@
+<style>
+  /* Small visual tweaks */
+  body {
+    background: #f6f8fb;
+    color: #212529;
+    padding: 2rem;
+  }
 
-  <style>
-    /* Small visual tweaks */
-    body { background: #f6f8fb; color: #212529; padding: 2rem; }
-    .invoice { background: #fff; padding: 2rem; border-radius: .5rem; box-shadow: 0 6px 18px rgba(0,0,0,.06);}
-    .table thead th { border-bottom: 2px solid #e9ecef; }
-    .no-break { page-break-inside: avoid; }
-    /* Print styles: hide controls that are not part of invoice */
-    @media print {
-      body { background: #fff; padding: 0; }
-      .no-print { display: none !important; }
-      .invoice { box-shadow: none; border: none; margin: 0; border-radius: 0; }
+  .invoice {
+    background: #fff;
+    padding: 2rem;
+    border-radius: .5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+  }
+
+  .table thead th {
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  .no-break {
+    page-break-inside: avoid;
+  }
+
+  /* Print styles: hide controls that are not part of invoice */
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
     }
-    /* Make small inputs look nicer in table */
-    .table input[type="number"], .table input[type="text"] {
-      width: 100%;
-      min-width: 0;
+
+    .no-print {
+      display: none !important;
+    }
+
+    .invoice {
       box-shadow: none;
       border: none;
-      background: transparent;
-      padding: 0.25rem 0;
+      margin: 0;
+      border-radius: 0;
     }
-    .table input:focus { outline: none; }
-  </style>
+  }
+
+  /* Make small inputs look nicer in table */
+  .table input[type="number"],
+  .table input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0.25rem 0;
+  }
+
+  .table input:focus {
+    outline: none;
+  }
+</style>
 </head>
+
 <body>
   <div class="container">
     <div class="invoice mx-auto" style="max-width: 900px;">
@@ -35,9 +69,9 @@
         <div class="text-end">
           <h4 class="mb-0">INVOICE</h4>
           <small class="text-muted">#000<?php
-            echo Order::get_last_id()+1;
-          ?></small><br>
-          <small class="text-muted">Issue date: <?= date("d-m-Y")?> </small>
+                                        echo Order::get_last_id() + 1;
+                                        ?></small><br>
+          <small class="text-muted">Issue date: <?= date("d-m-Y") ?> </small>
         </div>
       </div>
 
@@ -45,21 +79,21 @@
         <div class="col-sm-6">
           <h6 class="mb-1">Bill To</h6>
           <!-- <input id="billTo" class="form-control form-control-sm" value="Customer Name"> -->
-            
-           
-           <?php
-               echo Customer::html_select("customer");
-              //  $customer= Customer::all();
-              // $html="<select id='customer' name='customer'>";
-              // foreach ( $customer as $key => $value) {
-              //  $html.="<option value='$value->id'>$value->name</option>";
-              // }
 
-              // $html.="</select>";
 
-              // echo $html;
+          <?php
+          echo Customer::html_select("customer");
+          //  $customer= Customer::all();
+          // $html="<select id='customer' name='customer'>";
+          // foreach ( $customer as $key => $value) {
+          //  $html.="<option value='$value->id'>$value->name</option>";
+          // }
 
-           ?>
+          // $html.="</select>";
+
+          // echo $html;
+
+          ?>
           <textarea id="Address" class="form-control form-control-sm mt-2 billAddress" rows="2">Customer address line 1
             City, Country</textarea>
         </div>
@@ -87,21 +121,21 @@
             <tr class="item-row">
               <td class="align-middle">1</td>
               <td>
-                   <?php
-                       echo Product::html_select("product");
-                   ?>
+                <?php
+                echo Product::html_select("product");
+                ?>
               </td>
               <td><input type="number" min="0" step="1" class="form-control form-control-sm qty" value="1"></td>
               <td><input type="number" min="0" step="0.01" class="form-control form-control-sm  price" readonly value="100.00"></td>
-              <td><input type="number" min="0"  class="form-control form-control-sm tax" value="0"></td>
-              <td><input type="number" min="0"  class="form-control form-control-sm discount" value="0"></td>
+              <td><input type="number" min="0" class="form-control form-control-sm tax" value="0"></td>
+              <td><input type="number" min="0" class="form-control form-control-sm discount" value="0"></td>
               <td class="line-total align-middle">100.00</td>
               <td class="no-print text-end"><button class="btn btn-sm btn-outline-success add-row">Add</button></td>
             </tr>
 
           </thead>
           <tbody id="items">
-           
+
           </tbody>
         </table>
       </div>
@@ -117,16 +151,16 @@
 
             <div class="col-6 text-muted">Tax (%)</div>
             <div class="col-6 text-end">
-              <input id="taxPercent" type="number"  class="form-control form-control-sm" value="0">
+              <input id="taxPercent" type="number" class="form-control form-control-sm" value="0">
             </div>
 
             <div class="col-6 text-muted">Discount</div>
             <div class="col-6 text-end">
-              <input id="discount" type="number"  class="form-control form-control-sm" value="0">
+              <input id="discount" type="number" class="form-control form-control-sm" value="0">
             </div>
 
-         
-           
+
+
 
             <div class="col-6 text-muted">Total</div>
             <div class="col-6 text-end fs-5 fw-bold" id="grandTotal">100.00</div>
@@ -152,124 +186,128 @@
 
   <!-- Bootstrap JS bundle -->
 
-  <script src="<?= $base_url?>/js/cart2.js"></script>
+  <script src="<?= $base_url ?>/js/cart2.js"></script>
   <script>
-   $(function(){
-   
-    const cart= new Cart("order");
-    printCart();
+    $(function() {
 
-    $("#customer").on("change", function(){
-      let customer_id =  $(this).val();
-      // alert(customer_id);
-      $.ajax({
-        url:"<?=$base_url?>/api/customer/find",
-        type:"GET",
-        data:{id:customer_id},
-        success:function(res){
-        //  console.log(res);
-         let data = JSON.parse(res);
-          $(".billAddress").val(data.customer.address);  
-        },
-        error:function(err){
-           console.log(err);
-        }
+      const cart = new Cart("order");
+      printCart();
+
+      $("#customer").on("change", function() {
+        let customer_id = $(this).val();
+        // alert(customer_id);
+        $.ajax({
+          url: "<?= $base_url ?>/api/customer/find",
+          type: "GET",
+          data: {
+            id: customer_id
+          },
+          success: function(res) {
+            //  console.log(res);
+            let data = JSON.parse(res);
+            $(".billAddress").val(data.customer.address);
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+
+        // $.ajax({
+        //   url:"",
+        //   type:"",
+        //   data:{},
+        //   success:function(res){
+
+        //   },
+        //   error:function(){
+
+        //   }
+        // });
+
+
+      });
+      $("#product").on("change", function() {
+        let product_id = $(this).val();
+        let product_name = $(this).find("option:selected").text();
+
+        //alert(customer_id);
+        $.ajax({
+          url: "<?= $base_url ?>/api/product/find",
+          type: "GET",
+          data: {
+            id: product_id
+          },
+          success: function(res) {
+            let data = JSON.parse(res);
+            console.log("after json", data);
+            $(".price").val(data.regular_price);
+            $(".line-total").text(data.regular_price);
+            $(".qty").val(1);
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+
+
+
+
       });
 
-    // $.ajax({
-    //   url:"",
-    //   type:"",
-    //   data:{},
-    //   success:function(res){
-
-    //   },
-    //   error:function(){
-
-    //   }
-    // });
-
-
-    });
-    $("#product").on("change", function(){
-      let product_id =  $(this).val();
-      let product_name =  $(this).find("option:selected").text();
-     
-      //alert(customer_id);
-      $.ajax({
-        url:"<?=$base_url?>/api/product/find",
-        type:"GET",
-        data:{id:product_id},
-        success:function(res){
-         let data = JSON.parse(res);
-          console.log("after json",data);
-          $(".price").val(data.regular_price);
-          $(".line-total").text(data.regular_price);
-          $(".qty").val(1);
-        },
-        error:function(err){
-           console.log(err);
-        }
+      $(document).on("change", ".tax, .discount, .qty ", function() {
+        let qty = parseFloat($(".qty").val());
+        let discount = parseFloat($(".discount").val());
+        let tax = parseFloat($(".tax").val());
+        let price = parseFloat($(".price").val());
+        $(".line-total").text(Math.round((price * qty) + tax - discount));
       });
 
+      $(".add-row").on("click", function() {
+        let product_id = $("#product").val();
+        let product_name = $("#product").find("option:selected").text();
+        let qty = parseFloat($(".qty").val());
+        let price = $(".price").val();
+        let tax = $(".tax").val();
+        let discount = $(".discount").val();
+        let line_total = $(".line-total").text();
 
-
-
-    });
-
-    $(document).on("change",".tax, .discount, .qty ", function(){
-      let qty = parseFloat( $(".qty").val()) ;
-      let discount = parseFloat( $(".discount").val()); 
-      let tax = parseFloat( $(".tax").val());
-      let price = parseFloat( $(".price").val());
-      $(".line-total").text( Math.round((price * qty)+ tax - discount) );
-    });
-
-    $(".add-row").on("click", function(){
-      let product_id =  $("#product").val();
-      let product_name =  $("#product").find("option:selected").text();
-      let qty = parseFloat( $(".qty").val());
-      let price =  $(".price").val();
-      let tax =  $(".tax").val();
-      let discount =  $(".discount").val();
-      let line_total = $(".line-total").text();
-    
-      let data={
-          id:product_id,
-          name:product_name,
+        let data = {
+          id: product_id,
+          name: product_name,
           qty: qty,
-          price:price,
-          tax:tax,
-          discount:discount,
-          line_total:line_total
-      }
-       cart.AddItem(data);
-       printCart();
-    })
+          price: price,
+          tax: tax,
+          discount: discount,
+          line_total: line_total
+        }
+        cart.AddItem(data);
+        printCart();
+      })
 
-    $(document).on("click",".remove-row", function(){
-     let id=  $(this).data("id");
-     //console.log(id);
-     cart.delItem(id);
-     printCart();
-     
-    }) 
-     
+      $(document).on("click", ".remove-row", function() {
+        let id = $(this).data("id");
+        //console.log(id);
+        cart.delItem(id);
+        printCart();
 
-    function printCart(){
-      let data = cart.getData();
-      
-      let html="";
-      let tax=0;
-      let total=0;
-      let subtotal=0
-      let discount=0;
-      data.forEach((element,i) => {
-       tax += parseFloat(element.tax) ;
-       discount += parseFloat(element.discount) ;
-       let linetotal= (parseFloat(element.qty) * parseFloat(element.price)) + parseFloat(element.tax) - parseFloat(element.discount) ;
-       total += linetotal ;
-       subtotal+=(parseFloat(element.qty) * parseFloat(element.price));
-        html+= `
+      })
+
+
+      function printCart() {
+        let data = cart.getData();
+
+        let html = "";
+        let tax = 0;
+        let total = 0;
+        let subtotal = 0
+        let discount = 0;
+        data.forEach((element, i) => {
+          tax += parseFloat(element.tax);
+          discount += parseFloat(element.discount);
+          let linetotal = (parseFloat(element.qty) * parseFloat(element.price)) + parseFloat(element.tax) - parseFloat(element.discount);
+          total += linetotal;
+          subtotal += (parseFloat(element.qty) * parseFloat(element.price));
+          html += `
          <tr class="item-row">
               <td class="align-middle">${++i}</td>
               <td><input type="text" class="form-control form-control-sm desc" value="${element.name}"></td>
@@ -284,63 +322,86 @@
         
         `;
 
-      });
+        });
 
-       $("#items").html(html);
-       $("#subtotal").text();
-       $("#taxPercent").val(tax);
-       $("#discount").val(discount);
-       $("#subtotal").text(subtotal);
-       $("#grandTotal").text(total);
-       
-    }
-    
-      $("#resetRows").on("click", function(){
+        $("#items").html(html);
+        $("#subtotal").text();
+        $("#taxPercent").val(tax);
+        $("#discount").val(discount);
+        $("#subtotal").text(subtotal);
+        $("#grandTotal").text(total);
+
+      }
+
+      $("#resetRows").on("click", function() {
         cart.clearItem();
         printCart();
       });
 
 
-      $("#saveBtn").on("click", function(){
-         let customer_id= $("#customer").val();
-         let shipppingadd=$(".shippingadd").val();
-         let order_total=$("#grandTotal").text();
-         let vat=$("#taxPercent").val();
-         let discount=$("#discount").val();
-         let remark=$("#notes").text();
-         let products= cart.getData();
+      $("#saveBtn").on("click", function() {
+        let customer_id = $("#customer").val();
+        let shipppingadd = $(".shippingadd").val();
+        let order_total = $("#grandTotal").text();
+        let vat = $("#taxPercent").val();
+        let discount = $("#discount").val();
+        let remark = $("#notes").text();
+        let products = cart.getData();
 
-         let data={
-           customer_id:customer_id,
-           order_total:order_total,
-           shipping_address:shipppingadd,
-           vat,
-           discount,
-           remark,
-           products
-         }
+        let data = {
+          customer_id: customer_id,
+          order_total: order_total,
+          shipping_address: shipppingadd,
+          vat,
+          discount,
+          remark,
+          products
+        }
 
-         alert();
-         $.ajax({
-           url:"<?=$base_url?>/api/order/order_save",
-           type:"POST",
-           data:{data:data},
-           success:function(res){
-             console.log(res);
-             
-           },
-           error:function(err){
+
+        $.ajax({
+          url: "<?= $base_url ?>/api/order/order_save",
+          type: "POST",
+          data: {
+            data: data
+          },
+          success: function(res) {
+            let data = JSON.parse(res)
+            if (data.success) {
+              console.log(data);
+              Toastify({
+
+                text: "Order succes",
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center",
+                duration: 2000,
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+
+
+              }).showToast();
+
+
+              // cart.clearItem();
+              // printCart();
+              // location.reload()
+            }
+
+
+          },
+          error: function(err) {
             console.log(err);
-           }
-         });
+          }
+        });
 
       })
 
-   })
+    })
 
-  //  localStorage.setItem("name", "Rashedul");
-  //  console.log(localStorage.getItem("name"));
-  //  localStorage.removeItem("name");
-  //  localStorage.clear();
-   
+    //  localStorage.setItem("name", "Rashedul");
+    //  console.log(localStorage.getItem("name"));
+    //  localStorage.removeItem("name");
+    //  localStorage.clear();
   </script>
