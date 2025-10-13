@@ -46,7 +46,7 @@ delItem(itemId){
 }
 
 clearItem(){
-   let cartitems =JSON.parse( localStorage.getItem(this.name));
+    let cartitems =JSON.parse( localStorage.getItem(this.name));
     cartitems = [];
     localStorage.setItem(this.name , JSON.stringify(cartitems));
 }

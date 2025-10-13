@@ -66,7 +66,7 @@
         <div class="col-sm-6 text-sm-end">
           <h6 class="mb-1">Ship To</h6>
           <input id="shipTo" class="form-control form-control-sm" value="Customer Receiver (optional)">
-          <textarea id="shipAddress" class="form-control form-control-sm mt-2 billAddress" rows="2">Shipping address</textarea>
+          <textarea id="shipAddress" class="form-control form-control-sm mt-2 billAddress shippingadd" rows="2">Shipping address</textarea>
         </div>
       </div>
 
@@ -108,7 +108,6 @@
 
       <div class="d-flex justify-content-between align-items-center mb-3 no-print">
         <div>
-          <button id="addRow" class="btn btn-sm btn-outline-primary">+ Add item</button>
           <button id="resetRows" class="btn btn-sm btn-outline-secondary">Reset</button>
         </div>
         <div class="text-end" style="min-width: 300px;">
@@ -145,8 +144,7 @@
           <small class="text-muted">Bank: Your Bank · A/C: 000-000-000 · SWIFT: ABCDXX</small>
         </div>
         <div>
-          <button class="btn btn-success me-2" id="printBtn">Print / Save PDF</button>
-          <button class="btn btn-primary" id="downloadBtn">Download HTML</button>
+          <button class="btn btn-success me-2" id="saveBtn">Save</button>
         </div>
       </div>
     </div>
@@ -163,15 +161,15 @@
 
     $("#customer").on("change", function(){
       let customer_id =  $(this).val();
-      //alert(customer_id);
+      // alert(customer_id);
       $.ajax({
         url:"<?=$base_url?>/api/customer/find",
         type:"GET",
         data:{id:customer_id},
         success:function(res){
-        // console.log(res);
+        //  console.log(res);
          let data = JSON.parse(res);
-          $(".billAddress").val(data.address);  
+          $(".billAddress").val(data.customer.address);  
         },
         error:function(err){
            console.log(err);
@@ -219,10 +217,10 @@
     });
 
     $(document).on("change",".tax, .discount, .qty ", function(){
-      let qty = $(".qty").val()
-      let discount = $(".discount").val()
-      let tax = $(".tax").val()
-      let price =  $(".price").val();
+      let qty = parseFloat( $(".qty").val()) ;
+      let discount = parseFloat( $(".discount").val()); 
+      let tax = parseFloat( $(".tax").val());
+      let price = parseFloat( $(".price").val());
       $(".line-total").text( Math.round((price * qty)+ tax - discount) );
     });
 
@@ -263,11 +261,14 @@
       let html="";
       let tax=0;
       let total=0;
+      let subtotal=0
       let discount=0;
       data.forEach((element,i) => {
        tax += parseFloat(element.tax) ;
        discount += parseFloat(element.discount) ;
-       total += parseFloat(element.line_total) ;
+       let linetotal= (parseFloat(element.qty) * parseFloat(element.price)) + parseFloat(element.tax) - parseFloat(element.discount) ;
+       total += linetotal ;
+       subtotal+=(parseFloat(element.qty) * parseFloat(element.price));
         html+= `
          <tr class="item-row">
               <td class="align-middle">${++i}</td>
@@ -276,7 +277,7 @@
               <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " readonly value="${element.price}"></td>
               <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " readonly value="${element.tax}"></td>
               <td><input type="number" min="0" step="0.01" class="form-control form-control-sm " readonly value="${element.discount}"></td>
-              <td class=" align-middle">${element.line_total}</td>
+              <td class=" align-middle">${linetotal}</td>
               <td class="no-print text-end"><button class="btn btn-sm btn-outline-danger remove-row " data-id="${element.id}">Remove</button></td>
           </tr>
         
@@ -289,11 +290,51 @@
        $("#subtotal").text();
        $("#taxPercent").val(tax);
        $("#discount").val(discount);
+       $("#subtotal").text(subtotal);
        $("#grandTotal").text(total);
        
     }
     
+      $("#resetRows").on("click", function(){
+        cart.clearItem();
+        printCart();
+      });
 
+
+      $("#saveBtn").on("click", function(){
+         let customer_id= $("#customer").val();
+         let shipppingadd=$(".shippingadd").val();
+         let order_total=$("#grandTotal").text();
+         let vat=$("#taxPercent").val();
+         let discount=$("#discount").val();
+         let remark=$("#notes").text();
+         let products= cart.getData();
+
+         let data={
+           customer_id:customer_id,
+           order_total:order_total,
+           shipping_address:shipppingadd,
+           vat,
+           discount,
+           remark,
+           products
+         }
+
+         alert();
+         $.ajax({
+           url:"<?=$base_url?>/api/order/order_save",
+           type:"POST",
+           data:{data:data},
+           success:function(res){
+             console.log(res);
+             
+           },
+           error:function(err){
+            console.log(err);
+           }
+         });
+
+      })
 
    })
 

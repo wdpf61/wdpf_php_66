@@ -8,7 +8,6 @@ class CustomerApi extends Api{
 	}
 	
 	function find($data){
-        
 		$customer= Customer::find($data['id']);
 		echo json_encode(["customer"=>$customer, "data"=>$data]);
 	}
